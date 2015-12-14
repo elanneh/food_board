@@ -1,0 +1,25 @@
+
+<h3>{{main.recipe.user}} shared a recipe:</h3>
+		
+	<h5 ng-bind="main.recipe.recipe_title"></h5>
+	<p ng-bind="main.recipe.recipe_post"></p>
+		
+<h4>Got any questions? Comments? Post them here!</h4>
+
+
+<div ng-repeat="recipe in main.recipes | filter:filter_name | orderBy: 'created_at'">
+	<p ng-bind="recipe.comments.comment"></p>
+
+	<p ng-bind="recipe.comments.posted_by"></p>
+	<p ng-bind="recipe.comments.posted_at"></p>
+</div>
+
+<form name="comment">
+	<p><input text="text" ng-model="main.newComment.posted_by">
+	<textarea ng-model="main.newComment.comment"></textarea>
+	<button ng-click="main.addComment()">Add Comment</button>
+</form>
+
+
+
+

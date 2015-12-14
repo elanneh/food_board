@@ -1,0 +1,32 @@
+
+<h1>Welcome </h1>
+<h1 ng-bind="main.users.name"></h1>
+
+	<p>Search <input type="text" ng-model="filter_name"></p>
+
+	<table>
+		<tr>
+			<th>Category</th>
+			<th>Recipe</th>
+			<th>User Name</th>
+			<th>Created At</th>
+			<th>Posts</th>
+
+		</tr>	
+		<tr ng-repeat="recipe in main.recipes | filter:filter_name | orderBy:'created_at'">
+			<td ng-bind="recipe.category"></td>
+			<td> <a href="#/recipe/{{recipe._id}}">{{recipe.recipe_title}}</a></td>
+			<td ng-bind="recipe.user"></td>
+			<td ng-bind="recipe.created_at"></td>
+			<td><button ng-click="main.removeRecipe(recipe)">delete</button></td>
+		</tr>
+	</table>
+
+	<form name="add">
+		<p>Category: <select ng-model="main.newRecipe.category" ng-options="category.category_type for category in main.categories"></select>	</p>		
+		<p>User: <select ng-model="main.newRecipe.user" ng-options="user.name for user in main.users"></select>	</p>		
+		<p>Title:<input type="text" ng-model="main.newRecipe.recipe_title"></p>
+		<p>Description:<textarea ng-model="main.newRecipe.recipe_post"></textarea></p>
+		<p>Image:<input type="text" ng-model="main.newRecipe.img"></p>		
+		<button ng-click="main.addRecipe(main.newRecipe)">Add</button>
+	</form>	
